@@ -4,6 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +23,16 @@ import io.kommunicate.callbacks.KmCallback;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "TAG";
+    FirebaseAuth fAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        fAuth = FirebaseAuth.getInstance();
 
         Kommunicate.init(this, "2e9d020da2bb3b9a05a29c3198efa0405");
         List<String> botList = new ArrayList(); botList.add("bot1"); //enter your integrated bot Ids

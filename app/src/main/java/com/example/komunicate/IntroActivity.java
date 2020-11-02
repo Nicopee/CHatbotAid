@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FirebaseApp.initializeApp(this);
         // make the activity on full screen
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -46,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(),Register.class );
             startActivity(mainActivity);
             finish();
 
@@ -149,7 +150,7 @@ public class IntroActivity extends AppCompatActivity {
 
                 //open main activity
 
-                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                Intent mainActivity = new Intent(getApplicationContext(),Register.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity
