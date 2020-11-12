@@ -47,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(),Register.class );
+            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
             startActivity(mainActivity);
             finish();
 
@@ -58,7 +58,7 @@ public class IntroActivity extends AppCompatActivity {
 
         // hide the action bar
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         // ini views
         btnNext = findViewById(R.id.btn_next);
@@ -99,16 +99,8 @@ public class IntroActivity extends AppCompatActivity {
                 }
 
                 if (position == mList.size()-1) { // when we rech to the last screen
-
-                    // TODO : show the GETSTARTED Button and hide the indicator and the next button
-
                     loaddLastScreen();
-
-
                 }
-
-
-
             }
         });
 
@@ -150,7 +142,7 @@ public class IntroActivity extends AppCompatActivity {
 
                 //open main activity
 
-                Intent mainActivity = new Intent(getApplicationContext(),Register.class);
+                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(mainActivity);
                 // also we need to save a boolean value to storage so next time when the user run the app
                 // we could know that he is already checked the intro screen activity
@@ -177,29 +169,20 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     private boolean restorePrefData() {
-
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
         return  isIntroActivityOpnendBefore;
-
-
-
     }
 
     private void savePrefsData() {
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isIntroOpnend",true);
         editor.commit();
-
-
     }
 
     // show the GETSTARTED Button and hide the indicator and the next button
     private void loaddLastScreen() {
-
         btnNext.setVisibility(View.INVISIBLE);
         btnGetStarted.setVisibility(View.VISIBLE);
         tvSkip.setVisibility(View.INVISIBLE);
@@ -207,8 +190,5 @@ public class IntroActivity extends AppCompatActivity {
         // TODO : ADD an animation the getstarted button
         // setup animation
         btnGetStarted.setAnimation(btnAnim);
-
-
-
     }
 }
